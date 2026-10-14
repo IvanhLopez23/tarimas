@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import { waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.fab);
+---
+
+<a
+  href={waHref}
+  target="_blank"
+  rel="noopener"
+  aria-label="Escribir por WhatsApp"
+  class="fixed right-6 bottom-6 z-40 inline-flex items-center gap-2 rounded-full bg-orange-600 py-2 pr-3 pl-4 text-sm font-semibold text-white shadow-xl shadow-orange-950/40 transition-all duration-700 ease-fluid hover:bg-orange-700 active:scale-[0.98]"
+>
+  <Icon name="whatsapp-logo" class="size-4" />
+  <span class="hidden sm:inline">Escríbenos</span>
+</a>

@@ -1,0 +1,68 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 600"
+  width="800"
+  height="600"
+  role="img"
+  aria-label="Tarima fabricada a medida con cotas de largo y ancho personalizables"
+>
+  <rect width="800" height="600" fill="#F8FAFC" />
+
+  <!-- Silueta a medida, con trazo discontinuo porque el diseño aún no es fijo -->
+  <g
+    transform="translate(130 258)"
+    stroke="#94A3B8"
+    stroke-width="8"
+    fill="none"
+    stroke-dasharray="26 16"
+    stroke-linecap="round"
+  >
+    <path d="M0 0h540" />
+    <path d="M0 74h540" />
+    <path d="M24 0v74" />
+    <path d="M270 0v74" />
+    <path d="M516 0v74" />
+  </g>
+
+  <rect x="130" y="258" width="540" height="74" fill="#EA580C" opacity="0.08" />
+
+  <text
+    x="130"
+    y="184"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="26"
+    font-weight="700"
+    fill="#0F172A"
+  >Medida a tu producto</text>
+  <text
+    x="130"
+    y="216"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#64748B"
+  >Prototipo validado antes de fabricar el lote</text>
+
+  <g stroke="#EA580C" stroke-width="3" stroke-linecap="round">
+    <path d="M130 440h540" />
+    <path d="M130 430v20" />
+    <path d="M670 430v20" />
+    <path d="M146 440l24-10v20z" fill="#EA580C" stroke="none" />
+    <path d="M654 440l-24-10v20z" fill="#EA580C" stroke="none" />
+  </g>
+  <text
+    x="400"
+    y="486"
+    text-anchor="middle"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="30"
+    font-weight="700"
+    fill="#0F172A"
+  >600 a 2400 mm</text>
+
+  <g stroke="#CBD5E1" stroke-width="3" stroke-linecap="round">
+    <path d="M700 258v74" />
+    <path d="M690 258h20" />
+    <path d="M690 332h20" />
+  </g>
+</svg>

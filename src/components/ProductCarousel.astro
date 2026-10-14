@@ -1,0 +1,192 @@
+---
+import Icon from './Icon.astro';
+import { products, productMessage, waMessages, whatsappLink } from '../data/site';
+---
+
+<section id="productos" class="section bg-slate-50">
+  <div class="shell">
+    <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
+      <div class="max-w-copy">
+        <p class="eyebrow">Catálogo</p>
+        <h2 class="mt-6 text-3xl font-bold text-slate-900 sm:text-4xl">
+          Cuatro familias de tarimas, una sola promesa: la medida que pediste
+        </h2>
+        <p class="mt-6 text-lg text-slate-700">
+          Todo lo que ves aquí está en patio o sale de producción en menos de 10 días hábiles. Si
+          tu producto no cabe en ninguna medida, lo diseñamos contigo.
+        </p>
+      </div>
+
+      <div class="flex gap-2">
+        <button
+          type="button"
+          data-carousel-prev
+          aria-label="Ver productos anteriores"
+          class="grid size-10 place-items-center rounded-full border border-slate-300 text-slate-700 transition-all duration-700 ease-fluid hover:border-slate-900 hover:bg-slate-900 hover:text-white active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:bg-transparent disabled:hover:text-slate-700"
+        >
+          <Icon name="caret-left" class="size-6" />
+        </button>
+        <button
+          type="button"
+          data-carousel-next
+          aria-label="Ver productos siguientes"
+          class="grid size-10 place-items-center rounded-full border border-slate-300 text-slate-700 transition-all duration-700 ease-fluid hover:border-slate-900 hover:bg-slate-900 hover:text-white active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:bg-transparent disabled:hover:text-slate-700"
+        >
+          <Icon name="caret-right" class="size-6" />
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="mt-12"
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="Catálogo de tarimas"
+    >
+      <ul
+        data-carousel-track
+        class="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-3"
+      >
+        {
+          products.length === 0 ? (
+            <li class="w-full">
+              <div class="flex flex-col items-center gap-4 rounded-3xl border border-slate-200 bg-white p-12 text-center">
+                <span class="grid size-12 place-items-center rounded-xl bg-slate-900 text-orange-500">
+                  <Icon name="package" class="size-6" />
+                </span>
+                <h3 class="text-xl font-bold text-slate-900">Estamos surtiendo el patio</h3>
+                <p class="max-w-copy text-base text-slate-700">
+                  El catálogo se está actualizando. Escríbenos y te decimos qué medidas hay
+                  disponibles hoy mismo.
+                </p>
+                <a
+                  href={whatsappLink(waMessages.fab)}
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-primary"
+                >
+                  <Icon name="whatsapp-logo" class="size-4" />
+                  Preguntar por WhatsApp
+                </a>
+              </div>
+            </li>
+          ) : (
+            products.map((product) => (
+            <li class="shrink-0 basis-full snap-start sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]">
+              <article class="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-2 transition-all duration-700 ease-fluid hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  class="w-full rounded-2xl"
+                />
+
+                <div class="flex flex-1 flex-col p-4">
+                  <p class="text-xs font-semibold tracking-wide text-orange-600 uppercase">
+                    {product.format}
+                  </p>
+                  <h3 class="mt-2 text-xl font-bold text-slate-900">{product.name}</h3>
+                  <p class="mt-3 text-base text-slate-700">{product.summary}</p>
+
+                  <dl class="mt-6 flex flex-col gap-2 border-t border-slate-200 pt-6">
+                    {product.specs.map((spec) => (
+                      <div class="flex items-baseline justify-between gap-4">
+                        <dt class="text-sm text-slate-500">{spec.label}</dt>
+                        <dd class="text-sm font-semibold text-slate-900">{spec.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <a
+                    href={whatsappLink(productMessage(product.name))}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-primary mt-6 w-full"
+                  >
+                    <Icon name="whatsapp-logo" class="size-4" />
+                    Cotizar esta tarima
+                  </a>
+                </div>
+              </article>
+            </li>
+            ))
+          )
+        }
+      </ul>
+    </div>
+
+    <div class="mt-6 flex justify-center gap-2" data-carousel-dots></div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector('[data-carousel-track]');
+  const prev = document.querySelector('[data-carousel-prev]');
+  const next = document.querySelector('[data-carousel-next]');
+  const dotsHost = document.querySelector('[data-carousel-dots]');
+
+  if (track && prev && next && dotsHost) {
+    const slides = Array.from(track.children);
+
+    const dots = slides.map((slide, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className =
+        'h-2 w-6 rounded-full bg-slate-300 transition-all duration-700 ease-fluid hover:bg-slate-400';
+      dot.setAttribute('aria-label', `Ir al producto ${index + 1}`);
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: slide.offsetLeft - slides[0].offsetLeft, behavior: 'smooth' });
+      });
+      dotsHost.appendChild(dot);
+      return dot;
+    });
+
+    const step = () =>
+      slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth;
+
+    const sync = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= maxScroll - 1;
+
+      const active = Math.round(track.scrollLeft / step());
+      dots.forEach((dot, index) => {
+        const isActive = index === active;
+        dot.classList.toggle('bg-slate-900', isActive);
+        dot.classList.toggle('w-8', isActive);
+        dot.classList.toggle('bg-slate-300', !isActive);
+        dot.setAttribute('aria-current', String(isActive));
+      });
+    };
+
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+
+    // Throttled through requestAnimationFrame so dragging the rail never forces
+    // a synchronous layout on every single scroll event.
+    let queued = false;
+    track.addEventListener(
+      'scroll',
+      () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          sync();
+        });
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('resize', sync);
+    sync();
+  }
+</script>

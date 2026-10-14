@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+/*
+ * Plantilla de aviso de privacidad alineada a la Ley Federal de Protección de
+ * Datos Personales en Posesión de los Particulares. Revisa el texto con tu
+ * área legal antes de publicar el sitio.
+ */
+const title = 'Aviso de privacidad';
+---
+
+<BaseLayout
+  title={title}
+  description="Cómo tratamos los datos personales que nos compartes al solicitar una cotización de tarimas."
+>
+  <section class="section">
+    <div class="shell max-w-copy">
+      <p class="eyebrow">Legal</p>
+      <h1 class="mt-6 text-4xl font-bold text-slate-900">Aviso de privacidad</h1>
+      <p class="mt-6 text-base text-slate-700">
+        Última actualización: 4 de marzo de 2026. Este aviso aplica a los datos que nos compartes
+        por este sitio, por WhatsApp, por teléfono o por correo electrónico.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Quién es el responsable</h2>
+      <p class="mt-4 text-base text-slate-700">
+        {site.legalName}, con domicilio en {site.address.street}, {site.address.district},{' '}
+        {site.address.city}, {site.address.state}, C.P. {site.address.zip}, es responsable del
+        tratamiento de tus datos personales.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Qué datos recabamos</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Nombre, empresa, correo electrónico, teléfono y la información del embarque que nos
+        describes al pedir una cotización. No solicitamos datos patrimoniales ni financieros a
+        través de este sitio.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Para qué los usamos</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Para preparar tu cotización, coordinar la entrega, emitir facturas y dar seguimiento a
+        garantías. Si nos lo autorizas, también para enviarte avisos sobre disponibilidad de
+        inventario y precios.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Con quién los compartimos</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Únicamente con transportistas y agentes aduanales que participan en tu embarque, y con las
+        autoridades cuando una disposición legal lo exige. No vendemos ni rentamos tu información
+        a terceros.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Cuánto tiempo los conservamos</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Los datos de cotizaciones que no se convierten en pedido se eliminan a los 12 meses. Los
+        datos de clientes se conservan mientras exista la relación comercial y durante los plazos
+        fiscales aplicables.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Tus derechos</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Puedes solicitar el acceso, la rectificación, la cancelación u oposición al tratamiento de
+        tus datos escribiendo a{' '}
+        <a href={`mailto:${site.email}`} class="font-semibold text-slate-900 underline">
+          {site.email}
+        </a>. Te contestamos en un máximo de 20 días hábiles.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Cambios a este aviso</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Si modificamos este aviso, publicamos la versión nueva en esta misma página con la fecha de
+        actualización.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

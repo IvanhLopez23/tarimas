@@ -1,0 +1,16 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  width="64"
+  height="64"
+  role="img"
+  aria-label="Tarimas y Logística Pro"
+>
+  <rect width="64" height="64" rx="16" fill="#0F172A" />
+  <g fill="#EA580C">
+    <rect x="12" y="17" width="40" height="8" rx="4" />
+    <rect x="12" y="39" width="40" height="8" rx="4" />
+    <rect x="17" y="25" width="8" height="14" rx="4" />
+    <rect x="39" y="25" width="8" height="14" rx="4" />
+  </g>
+</svg>

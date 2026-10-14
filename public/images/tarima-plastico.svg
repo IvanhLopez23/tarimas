@@ -1,0 +1,76 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 600"
+  width="800"
+  height="600"
+  role="img"
+  aria-label="Tarima de plástico de alta densidad moldeada en una sola pieza"
+>
+  <rect width="800" height="600" fill="#F8FAFC" />
+
+  <g transform="translate(110 252)">
+    <rect x="0" y="0" width="176" height="24" rx="6" fill="#475569" />
+    <rect x="196" y="0" width="176" height="24" rx="6" fill="#475569" />
+    <rect x="392" y="0" width="176" height="24" rx="6" fill="#475569" />
+
+    <!-- Refuerzo central en una sola pieza -->
+    <path
+      d="M0 24h568v58H0z"
+      fill="#334155"
+    />
+    <rect x="0" y="24" width="568" height="12" rx="4" fill="#64748B" />
+
+    <rect x="0" y="82" width="176" height="24" rx="6" fill="#475569" />
+    <rect x="196" y="82" width="176" height="24" rx="6" fill="#475569" />
+    <rect x="392" y="82" width="176" height="24" rx="6" fill="#475569" />
+
+    <rect x="0" y="24" width="18" height="82" rx="6" fill="#1E293B" opacity="0.35" />
+  </g>
+
+  <text
+    x="110"
+    y="184"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="26"
+    font-weight="700"
+    fill="#0F172A"
+  >1200 x 1000 mm</text>
+  <text
+    x="110"
+    y="216"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#64748B"
+  >HDPE virgen, sin tratamiento fitosanitario</text>
+
+  <g transform="translate(560 88)">
+    <rect width="152" height="40" rx="10" fill="#0F172A" />
+    <text
+      x="76"
+      y="27"
+      text-anchor="middle"
+      font-family="Manrope, Segoe UI, sans-serif"
+      font-size="19"
+      font-weight="700"
+      fill="#EA580C"
+    >LAVABLE</text>
+  </g>
+
+  <g stroke="#EA580C" stroke-width="3" stroke-linecap="round">
+    <path d="M110 440h568" />
+    <path d="M110 430v20" />
+    <path d="M678 430v20" />
+    <path d="M126 440l24-10v20z" fill="#EA580C" stroke="none" />
+    <path d="M662 440l-24-10v20z" fill="#EA580C" stroke="none" />
+  </g>
+  <text
+    x="394"
+    y="486"
+    text-anchor="middle"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="30"
+    font-weight="700"
+    fill="#0F172A"
+  >1200 mm</text>
+</svg>

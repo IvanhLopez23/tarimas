@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+/*
+ * Plantilla de términos de servicio. Ajusta plazos, garantías y formas de pago
+ * para que coincidan con tus condiciones comerciales reales antes de publicar.
+ */
+const title = 'Términos de servicio';
+---
+
+<BaseLayout
+  title={title}
+  description="Condiciones comerciales para la compra de tarimas, tiempos de entrega y alcance de nuestra garantía de reposición."
+>
+  <section class="section">
+    <div class="shell max-w-copy">
+      <p class="eyebrow">Legal</p>
+      <h1 class="mt-6 text-4xl font-bold text-slate-900">Términos de servicio</h1>
+      <p class="mt-6 text-base text-slate-700">
+        Última actualización: 4 de marzo de 2026. Estos términos rigen la compra de tarimas y los
+        servicios de tratamiento, reparación y flete que ofrece {site.legalName}.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Cotizaciones</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Toda cotización tiene una vigencia de 15 días naturales a partir de su envío. Después de
+        ese plazo el precio puede ajustarse según el costo de la madera y del flete.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Pedidos y tiempos de entrega</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Los tiempos de entrega se confirman por escrito al momento de aceptar la cotización y se
+        cuentan a partir de la recepción del anticipo. Los retrasos atribuibles al transportista o
+        a causas de fuerza mayor se notifican el mismo día en que se detectan.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Tratamiento NIMF 15</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Cada lote de exportación se entrega con el sello y el certificado de tratamiento térmico
+        emitido por un organismo autorizado. El cliente es responsable de verificar que la medida y
+        el marcado cumplan con la normativa del país de destino.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Garantía de reposición</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Reponemos sin costo, dentro de los 90 días naturales siguientes a la entrega, cualquier
+        tarima que falle por un defecto de fabricación. La garantía no cubre daños por mal uso,
+        sobrecarga ni exposición prolongada a la intemperie.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Formas de pago</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Aceptamos transferencia bancaria, cheque certificado y línea de crédito a 30 días para
+        clientes con historial de compra. Los pedidos a medida requieren un anticipo del 50%.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Propiedad intelectual</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Los planos, herramentales y diseños que desarrollamos para una tarima a medida son
+        propiedad de {site.legalName} hasta que el cliente liquida el proyecto completo.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold text-slate-900">Ley aplicable</h2>
+      <p class="mt-4 text-base text-slate-700">
+        Estos términos se rigen por las leyes de los Estados Unidos Mexicanos y cualquier
+        controversia se resuelve en los tribunales de Monterrey, Nuevo León.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

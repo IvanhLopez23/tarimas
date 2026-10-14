@@ -1,0 +1,48 @@
+---
+interface Props {
+  /** One entry per rendered line. Order matters: words light up in reading order. */
+  lines: string[];
+}
+
+const { lines } = Astro.props;
+const rows = lines.map((line) => line.split(' ').filter(Boolean));
+---
+
+<section class="bg-slate-900 py-16 lg:py-24">
+  <div class="shell">
+    <p class="max-w-copy text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+      {
+        rows.map((words) => (
+          <span class="block">
+            {words.map((word, index) => (
+              <span class="tagline-word" style={`--word-delay: ${index * 60}ms`} data-tagline-word>
+                {word}
+              </span>
+            ))}
+          </span>
+        ))
+      }
+    </p>
+  </div>
+</section>
+
+<script>
+  // One observer per word, triggered by a thin band across the middle of the
+  // viewport so words activate in reading order instead of all at once.
+  const words = document.querySelectorAll('[data-tagline-word]');
+
+  if (words.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add('is-lit');
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px' }
+    );
+
+    for (const word of words) observer.observe(word);
+  }
+</script>

@@ -1,0 +1,298 @@
+---
+import Icon from './Icon.astro';
+import { waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.quote);
+
+const trust = [
+  'Cotización con flete y fecha de entrega por escrito',
+  'Inventario reservado 15 días sin anticipo',
+  'Certificado NIMF 15 incluido en cada lote de exportación',
+];
+---
+
+<section id="cotizacion" class="bg-slate-900 py-16 lg:py-24">
+  <div class="shell grid gap-12 lg:grid-cols-2 lg:gap-16">
+    <div data-reveal>
+      <p class="eyebrow text-orange-500">Cotización</p>
+      <h2 class="mt-6 max-w-copy text-3xl font-bold text-white sm:text-4xl">
+        Respuesta en menos de 2 horas hábiles, con precio firme
+      </h2>
+      <p class="mt-6 max-w-copy text-lg text-slate-300">
+        Llena los datos, te llevamos a WhatsApp con el mensaje armado y un asesor te contesta con
+        precio por volumen, flete y fecha de entrega.
+      </p>
+
+      <ul class="mt-8 flex flex-col gap-3">
+        {
+          trust.map((item) => (
+            <li class="flex items-start gap-2 text-base text-slate-300">
+              <Icon name="check-circle" class="mt-0.5 size-4 shrink-0 text-orange-500" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <a href={waHref} target="_blank" rel="noopener" class="btn btn-outline-dark mt-8">
+        <Icon name="whatsapp-logo" class="size-4" />
+        Prefiero escribir directo
+      </a>
+    </div>
+
+    <form
+      data-quote-form
+      data-whatsapp={whatsappLink('')}
+      novalidate
+      class="grid gap-6 rounded-3xl border border-slate-700 bg-slate-950/40 p-6 sm:grid-cols-2"
+      data-reveal
+      style="transition-delay: 100ms"
+    >
+      <div>
+        <label for="cotiza-nombre" class="block text-sm font-semibold text-slate-300">
+          Nombre y apellido
+        </label>
+        <input
+          id="cotiza-nombre"
+          name="nombre"
+          type="text"
+          autocomplete="name"
+          placeholder="Marisol Ibarra"
+          class="field mt-2"
+        />
+        <p data-error-for="nombre" class="mt-2 text-sm text-red-400"></p>
+      </div>
+
+      <div>
+        <label for="cotiza-empresa" class="block text-sm font-semibold text-slate-300">
+          Empresa
+        </label>
+        <input
+          id="cotiza-empresa"
+          name="empresa"
+          type="text"
+          autocomplete="organization"
+          placeholder="Empaques del Golfo"
+          class="field mt-2"
+        />
+        <p data-error-for="empresa" class="mt-2 text-sm text-red-400"></p>
+      </div>
+
+      <div>
+        <label for="cotiza-correo" class="block text-sm font-semibold text-slate-300">Correo</label>
+        <input
+          id="cotiza-correo"
+          name="correo"
+          type="email"
+          autocomplete="email"
+          placeholder="compras@empaquesdelgolfo.mx"
+          class="field mt-2"
+        />
+        <p data-error-for="correo" class="mt-2 text-sm text-red-400"></p>
+      </div>
+
+      <div>
+        <label for="cotiza-cantidad" class="block text-sm font-semibold text-slate-300">
+          Piezas aproximadas
+        </label>
+        <input
+          id="cotiza-cantidad"
+          name="cantidad"
+          type="text"
+          inputmode="numeric"
+          placeholder="500"
+          class="field mt-2"
+        />
+        <p data-error-for="cantidad" class="mt-2 text-sm text-red-400"></p>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="cotiza-producto" class="block text-sm font-semibold text-slate-300">
+          Producto que te interesa
+        </label>
+        <select id="cotiza-producto" name="producto" class="field mt-2">
+          <option class="bg-slate-900 text-white" value="Tarima estándar americana 48 x 40 in">
+            Tarima estándar americana 48 x 40 in
+          </option>
+          <option class="bg-slate-900 text-white" value="Europallet 1200 x 800 mm">
+            Europallet 1200 x 800 mm
+          </option>
+          <option class="bg-slate-900 text-white" value="Tarima de plástico de alta densidad">
+            Tarima de plástico de alta densidad
+          </option>
+          <option class="bg-slate-900 text-white" value="Tarima personalizada a medida">
+            Tarima personalizada a medida
+          </option>
+        </select>
+      </div>
+
+      <fieldset class="sm:col-span-2">
+        <legend class="text-sm font-semibold text-slate-300">Destino del envío</legend>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <div>
+            <input
+              id="cotiza-nacional"
+              name="destino"
+              type="radio"
+              value="Nacional"
+              class="peer sr-only"
+              checked
+            />
+            <label
+              for="cotiza-nacional"
+              class="block cursor-pointer rounded-lg border border-slate-700 px-3 py-2 text-sm font-semibold text-slate-300 transition-all duration-700 ease-fluid hover:bg-white/5 peer-checked:border-orange-600 peer-checked:bg-orange-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-orange-500"
+            >
+              Nacional
+            </label>
+          </div>
+          <div>
+            <input
+              id="cotiza-internacional"
+              name="destino"
+              type="radio"
+              value="Internacional"
+              class="peer sr-only"
+            />
+            <label
+              for="cotiza-internacional"
+              class="block cursor-pointer rounded-lg border border-slate-700 px-3 py-2 text-sm font-semibold text-slate-300 transition-all duration-700 ease-fluid hover:bg-white/5 peer-checked:border-orange-600 peer-checked:bg-orange-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-orange-500"
+            >
+              Internacional
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="sm:col-span-2">
+        <label for="cotiza-detalle" class="block text-sm font-semibold text-slate-300">
+          Detalle del embarque <span class="font-normal text-slate-500">(opcional)</span>
+        </label>
+        <textarea
+          id="cotiza-detalle"
+          name="detalle"
+          rows="3"
+          placeholder="Salida por Altamira el 20 de noviembre, producto embalado en caja de cartón."
+          class="field mt-2 resize-y"></textarea>
+      </div>
+
+      <div class="sm:col-span-2">
+        <button type="submit" data-quote-submit class="btn btn-primary w-full">
+          <Icon name="whatsapp-logo" class="size-4" />
+          <span data-submit-label>Enviar por WhatsApp</span>
+        </button>
+        <p data-form-status role="status" class="mt-4 text-sm text-slate-300"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector('[data-quote-form]');
+
+  if (form instanceof HTMLFormElement) {
+    const status = form.querySelector('[data-form-status]');
+    const submit = form.querySelector('[data-quote-submit]');
+    const submitLabel = form.querySelector('[data-submit-label]');
+    const whatsappBase = form.dataset.whatsapp || '';
+
+    const read = (name) => {
+      const node = form.elements.namedItem(name);
+      if (!node) return '';
+      if (node instanceof RadioNodeList) return node.value;
+      return String(node.value || '');
+    };
+
+    const setError = (name, message) => {
+      const slot = form.querySelector(`[data-error-for="${name}"]`);
+      const input = form.elements.namedItem(name);
+      if (slot) slot.textContent = message;
+      if (input instanceof Element) input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    };
+
+    const clearErrors = () => {
+      for (const slot of form.querySelectorAll('[data-error-for]')) slot.textContent = '';
+      for (const input of form.querySelectorAll('[aria-invalid]')) {
+        input.setAttribute('aria-invalid', 'false');
+      }
+    };
+
+    const validate = () => {
+      clearErrors();
+      let valid = true;
+
+      if (read('nombre').trim().length < 3) {
+        setError('nombre', 'Escribe tu nombre para saber con quién hablamos.');
+        valid = false;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(read('correo').trim())) {
+        setError('correo', 'Revisa el correo: le falta el arroba o el dominio.');
+        valid = false;
+      }
+
+      const cantidad = read('cantidad').trim();
+      if (cantidad && !/^\d{1,7}$/.test(cantidad)) {
+        setError('cantidad', 'Escribe solo el número de piezas, por ejemplo 500.');
+        valid = false;
+      }
+
+      return valid;
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!validate()) {
+        if (status) status.textContent = 'Revisa los campos marcados y vuelve a intentar.';
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid instanceof HTMLElement) firstInvalid.focus();
+        return;
+      }
+
+      const nombre = read('nombre').trim();
+      const empresa = read('empresa').trim();
+      const correo = read('correo').trim();
+      const cantidad = read('cantidad').trim();
+      const detalle = read('detalle').trim();
+
+      const lines = [
+        'Hola, quiero cotizar tarimas.',
+        `Producto: ${read('producto')}`,
+        `Destino: ${read('destino')}`,
+        cantidad ? `Cantidad aproximada: ${cantidad} piezas` : '',
+        `Nombre: ${nombre}`,
+        empresa ? `Empresa: ${empresa}` : '',
+        `Correo: ${correo}`,
+        detalle ? `Detalle: ${detalle}` : '',
+      ].filter(Boolean);
+
+      if (submitLabel) submitLabel.textContent = 'Abriendo WhatsApp…';
+      if (submit instanceof HTMLButtonElement) {
+        submit.disabled = true;
+        submit.setAttribute('aria-busy', 'true');
+      }
+
+      window.open(`${whatsappBase}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+
+      window.setTimeout(() => {
+        if (submitLabel) submitLabel.textContent = 'Enviar por WhatsApp';
+        if (submit instanceof HTMLButtonElement) {
+          submit.disabled = false;
+          submit.removeAttribute('aria-busy');
+        }
+        if (status) {
+          status.textContent = 'Abrimos WhatsApp con tu solicitud lista. Solo falta que la envíes.';
+        }
+      }, 900);
+    });
+
+    form.addEventListener('input', (event) => {
+      const target = event.target;
+      if (target instanceof Element) {
+        const name = target.getAttribute('name');
+        if (name) setError(name, '');
+      }
+      if (status) status.textContent = '';
+    });
+  }
+</script>

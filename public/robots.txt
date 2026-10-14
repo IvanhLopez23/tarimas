@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tarimaslogisticapro.com/sitemap-index.xml

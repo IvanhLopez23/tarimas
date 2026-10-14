@@ -1,0 +1,121 @@
+---
+import Icon from './Icon.astro';
+import { site, waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.fab);
+
+const details = [
+  {
+    icon: 'phone',
+    label: 'Teléfono',
+    value: site.phone.display,
+    href: site.phone.href,
+  },
+  {
+    icon: 'whatsapp-logo',
+    label: 'WhatsApp',
+    value: site.whatsapp.display,
+    href: waHref,
+  },
+  {
+    icon: 'envelope-simple',
+    label: 'Correo',
+    value: site.email,
+    href: `mailto:${site.email}`,
+  },
+  {
+    icon: 'map-pin',
+    label: 'Planta y bodega',
+    value: `${site.address.street}, ${site.address.district}, ${site.address.city}, ${site.address.state}, C.P. ${site.address.zip}`,
+    href: site.mapsUrl,
+  },
+] as const;
+---
+
+<section id="contacto" class="section">
+  <div class="shell grid gap-12 lg:grid-cols-3">
+    <div class="lg:col-span-1" data-reveal>
+      <p class="eyebrow">Contacto</p>
+      <h2 class="mt-6 text-3xl font-bold text-slate-900 sm:text-4xl">
+        Habla con una persona, no con un formulario
+      </h2>
+      <p class="mt-6 text-base text-slate-700">
+        Atendemos de lunes a viernes de 8:00 a 18:00 y el sábado hasta la 13:00. Si escribes fuera
+        de horario, tu mensaje queda en la fila y te contestamos al abrir.
+      </p>
+
+      <ul class="mt-6 flex gap-2">
+        {
+          site.social.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener"
+                aria-label={`${site.name} en ${item.name}`}
+                class="grid size-10 place-items-center rounded-full border border-slate-300 text-slate-700 transition-all duration-700 ease-fluid hover:border-slate-900 hover:bg-slate-900 hover:text-white active:scale-[0.98]"
+              >
+                <Icon name={item.icon} class="size-6" />
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener"
+            aria-label={`${site.name} por WhatsApp`}
+            class="grid size-10 place-items-center rounded-full border border-slate-300 text-slate-700 transition-all duration-700 ease-fluid hover:border-orange-600 hover:bg-orange-600 hover:text-white active:scale-[0.98]"
+          >
+            <Icon name="whatsapp-logo" class="size-6" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:col-span-2" data-reveal style="transition-delay: 100ms">
+      {
+        details.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-700 ease-fluid hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5">
+            <span class="grid size-12 place-items-center rounded-xl bg-slate-900 text-orange-500">
+              <Icon name={item.icon} class="size-6" />
+            </span>
+            <h3 class="mt-6 text-sm font-semibold tracking-wide text-slate-500 uppercase">
+              {item.label}
+            </h3>
+            <p class="mt-2 text-base text-slate-900">
+              <a
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener' : undefined}
+                class="transition-all duration-700 ease-fluid hover:text-orange-600"
+              >
+                {item.value}
+              </a>
+            </p>
+          </article>
+        ))
+      }
+
+      <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:col-span-2">
+        <span class="grid size-12 place-items-center rounded-xl bg-white text-orange-600">
+          <Icon name="clock" class="size-6" />
+        </span>
+        <h3 class="mt-6 text-sm font-semibold tracking-wide text-slate-500 uppercase">
+          Horarios de atención
+        </h3>
+        <dl class="mt-4 grid gap-2 sm:grid-cols-3">
+          {
+            site.hours.map((slot) => (
+              <div>
+                <dt class="text-sm text-slate-500">{slot.days}</dt>
+                <dd class="text-base font-semibold text-slate-900">{slot.time}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>

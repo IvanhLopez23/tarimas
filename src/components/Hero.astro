@@ -1,0 +1,65 @@
+---
+import Icon from './Icon.astro';
+import { waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.hero);
+---
+
+<section id="inicio" class="bg-slate-900 pt-24 pb-16">
+  <div class="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div data-reveal>
+      <p class="eyebrow text-orange-500">Tratamiento térmico NIMF 15 certificado</p>
+
+      <h1
+        class="mt-6 max-w-copy bg-linear-to-r from-white to-[#9B9B9B] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl lg:text-6xl"
+      >
+        Tarimas de exportación<br class="hidden lg:inline" /> que llegan al puerto a tiempo
+      </h1>
+
+      <p class="mt-6 max-w-copy text-lg text-slate-300">
+        Fabricamos y distribuimos tarimas de madera y plástico de alta resistencia, con certificado
+        fitosanitario y trazabilidad por lote. Despachamos a las 32 entidades de México y a 26
+        países.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href={waHref} target="_blank" rel="noopener" class="btn btn-primary">
+          <Icon name="whatsapp-logo" class="size-4" />
+          Cotizar por WhatsApp
+        </a>
+        <a href="#productos" class="btn btn-outline-dark">
+          Ver catálogo
+          <Icon name="arrow-right" class="size-4" />
+        </a>
+      </div>
+
+      <p class="mt-6 flex items-center gap-2 text-sm text-slate-400">
+        <Icon name="check-circle" class="size-4 shrink-0 text-orange-500" />
+        Cotización en menos de 2 horas hábiles, sin compromiso de compra
+      </p>
+    </div>
+
+    <div
+      class="rounded-3xl bg-white p-2 shadow-2xl shadow-black/40"
+      data-reveal
+      style="transition-delay: 100ms"
+    >
+      <div class="relative">
+        <img
+          src="/images/hero-patios.svg"
+          alt="Tarimas de madera apiladas y flejadas por lote dentro del patio de nuestra bodega en Apodaca"
+          width="1200"
+          height="900"
+          class="w-full rounded-2xl"
+          fetchpriority="high"
+        />
+        <!-- Sits 16px inside the 24px card radius, so the badge lands on 8px. -->
+        <p
+          class="absolute right-4 bottom-4 rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white"
+        >
+          Lote <span class="text-orange-400">#TN-4821</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

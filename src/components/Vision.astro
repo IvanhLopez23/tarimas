@@ -1,0 +1,106 @@
+---
+import Icon from './Icon.astro';
+import { site, values } from '../data/site';
+
+const cards = [
+  {
+    icon: 'target',
+    title: 'Misión',
+    body: 'Que ninguna planta se quede sin tarimas. Fabricamos en volumen, con madera seca y medida exacta, para que tu línea de embarque no se detenga un solo turno.',
+  },
+  {
+    icon: 'eye',
+    title: 'Visión',
+    body: 'Ser el proveedor de referencia del noreste de México y la primera opción de quien exporta desde Manzanillo, Lázaro Cárdenas o Altamira.',
+  },
+] as const;
+
+const coverage = [
+  {
+    icon: 'truck',
+    title: 'Envíos nacionales',
+    body: 'Cubrimos las 32 entidades con flota propia y aliados en Monterrey, Guadalajara, Querétaro, Ciudad de México y Mérida. La entrega estándar tarda de 3 a 5 días hábiles.',
+    points: ['Entrega en 24 horas dentro del área metropolitana', 'Flete consolidado para pedidos mixtos', 'Descarga con montacargas propio'],
+  },
+  {
+    icon: 'globe-hemisphere-west',
+    title: 'Envíos internacionales',
+    body: 'Consolidamos contenedor completo o carga suelta hacia Estados Unidos, Canadá, Centroamérica y Europa. La documentación se entrega lista para tu agente aduanal.',
+    points: ['Sello y certificado NIMF 15 foliado', 'Programa IMMEX para importación temporal', 'Ficha técnica por lote para tu cliente'],
+  },
+] as const;
+---
+
+<section id="nosotros" class="section">
+  <div class="shell">
+    <div class="max-w-copy" data-reveal>
+      <p class="eyebrow">Nosotros</p>
+      <h2 class="mt-6 text-3xl font-bold text-slate-900 sm:text-4xl">
+        Llevamos 22 años resolviendo el embarque que se atora por una tarima
+      </h2>
+      <p class="mt-6 text-lg text-slate-700">
+        Empezamos en {site.address.district} con una sierra y un patio de 400 metros cuadrados. Hoy
+        operamos tres líneas de producción, un taller de reparación y un patio de 9,400 metros
+        cuadrados con inventario listo para despacho.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      {
+        cards.map((card) => (
+          <article
+            class="rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-700 ease-fluid hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5"
+            data-reveal
+          >
+            <span class="grid size-12 place-items-center rounded-xl bg-slate-900 text-orange-500">
+              <Icon name={card.icon} class="size-6" />
+            </span>
+            <h3 class="mt-6 text-xl font-bold text-slate-900">{card.title}</h3>
+            <p class="mt-3 text-base text-slate-700">{card.body}</p>
+          </article>
+        ))
+      }
+
+      <article
+        class="rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-700 ease-fluid hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5"
+        data-reveal
+      >
+        <span class="grid size-12 place-items-center rounded-xl bg-slate-900 text-orange-500">
+          <Icon name="handshake" class="size-6" />
+        </span>
+        <h3 class="mt-6 text-xl font-bold text-slate-900">Valores</h3>
+        <ul class="mt-3 flex flex-col gap-3">
+          {
+            values.map((value) => (
+              <li class="text-base text-slate-700">
+                <span class="font-semibold text-slate-900">{value.title}.</span> {value.body}
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+      {
+        coverage.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6" data-reveal>
+            <span class="grid size-12 place-items-center rounded-xl bg-white text-orange-600">
+              <Icon name={item.icon} class="size-6" />
+            </span>
+            <h3 class="mt-6 text-xl font-bold text-slate-900">{item.title}</h3>
+            <p class="mt-3 text-base text-slate-700">{item.body}</p>
+            <ul class="mt-6 flex flex-col gap-2">
+              {item.points.map((point) => (
+                <li class="flex items-start gap-2 text-sm text-slate-700">
+                  <Icon name="check-circle" class="mt-0.5 size-4 shrink-0 text-orange-600" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.fab);
+---
+
+<BaseLayout
+  title="No encontramos esta página"
+  description="La dirección que abriste no existe o cambió de lugar. Vuelve al inicio o escríbenos por WhatsApp."
+  noindex
+>
+  <section class="bg-slate-900 py-24">
+    <div class="shell max-w-copy">
+      <p class="eyebrow text-orange-500">Error 404</p>
+      <h1 class="mt-6 text-4xl font-bold text-white sm:text-5xl">
+        Esta página no existe, pero tu cotización sí puede
+      </h1>
+      <p class="mt-6 text-lg text-slate-300">
+        La dirección que abriste no está disponible. Revisa el enlace o regresa al catálogo para
+        ver las tarimas que tenemos en patio.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/" class="btn btn-primary">
+          <Icon name="arrow-right" class="size-4" />
+          Volver al inicio
+        </a>
+        <a href="/#productos" class="btn btn-outline-dark">Ver catálogo</a>
+        <a href={waHref} target="_blank" rel="noopener" class="btn btn-outline-dark">
+          <Icon name="whatsapp-logo" class="size-4" />
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

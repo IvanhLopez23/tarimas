@@ -1,0 +1,147 @@
+---
+import Icon from './Icon.astro';
+import { navigation, site, waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.header);
+const currentPath = Astro.url.pathname;
+---
+
+<header class="group fixed inset-x-0 top-0 z-50" data-open="false" data-menu-header>
+  <!-- Screen filling glass menu. Hidden from desktop entirely. -->
+  <div
+    id="menu-movil"
+    class="pointer-events-none fixed inset-0 flex flex-col justify-center gap-8 bg-white/80 px-6 opacity-0 backdrop-blur-3xl transition-all duration-700 ease-fluid group-data-[open=true]:pointer-events-auto group-data-[open=true]:opacity-100 lg:hidden"
+  >
+    <nav aria-label="Navegación móvil">
+      <ul class="flex flex-col gap-4">
+        {
+          navigation.map((item, index) => (
+            <li
+              class="translate-y-12 opacity-0 transition-all duration-700 ease-fluid group-data-[open=true]:translate-y-0 group-data-[open=true]:opacity-100 group-data-[open=false]:delay-0"
+              style={`transition-delay: ${100 + index * 50}ms`}
+            >
+              <a
+                href={item.href}
+                data-menu-link
+                aria-current={currentPath === '/' && item.href === '/#inicio' ? 'page' : undefined}
+                class="block text-4xl font-bold text-slate-900 transition-all duration-700 ease-fluid hover:text-orange-600"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div
+      class="translate-y-12 text-base text-slate-600 opacity-0 transition-all duration-700 ease-fluid group-data-[open=true]:translate-y-0 group-data-[open=true]:opacity-100 group-data-[open=false]:delay-0"
+      style="transition-delay: 350ms"
+    >
+      <p class="font-semibold text-slate-900">¿Necesitas una cotización hoy?</p>
+      <a
+        href={waHref}
+        target="_blank"
+        rel="noopener"
+        data-menu-link
+        class="btn btn-primary mt-4"
+      >
+        <Icon name="whatsapp-logo" class="size-4" />
+        Cotizar por WhatsApp
+      </a>
+      <p class="mt-6">
+        <a href={site.phone.href} class="font-semibold text-slate-900">{site.phone.display}</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Floating glass pill. -->
+  <nav
+    aria-label="Navegación principal"
+    class="relative z-10 mx-auto mt-6 flex w-max max-w-[calc(100%-3rem)] items-center gap-2 rounded-full border border-slate-900/10 bg-white/70 py-2 pr-2 pl-4 shadow-lg shadow-slate-900/5 backdrop-blur-xl"
+  >
+    <a href="/#inicio" class="flex items-center gap-2">
+      <span class="grid size-8 place-items-center rounded-full bg-slate-900 text-orange-500">
+        <Icon name="stack" class="size-4" />
+      </span>
+      <span class="hidden text-base font-bold text-slate-900 sm:inline">{site.name}</span>
+    </a>
+
+    <ul class="hidden items-center gap-1 lg:flex">
+      {
+        navigation.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={currentPath === '/' && item.href === '/#inicio' ? 'page' : undefined}
+              class="block rounded-full px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-700 ease-fluid hover:bg-slate-900/5 hover:text-slate-900 aria-[current=page]:text-orange-600"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href={waHref}
+      target="_blank"
+      rel="noopener"
+      class="btn btn-primary ml-2 text-sm"
+      data-menu-link
+    >
+      <Icon name="whatsapp-logo" class="size-4" />
+      <span class="hidden sm:inline">Cotizar por WhatsApp</span>
+      <span class="sm:hidden">Cotizar</span>
+    </a>
+
+    <button
+      type="button"
+      data-menu-button
+      aria-expanded="false"
+      aria-controls="menu-movil"
+      class="relative grid size-10 place-items-center rounded-full transition-all duration-700 ease-fluid hover:bg-slate-900/5 active:scale-[0.98] lg:hidden"
+    >
+      <span class="sr-only">Abrir menú</span>
+      <span class="relative block size-6" aria-hidden="true">
+        <span
+          class="absolute top-1/2 left-0 h-0.5 w-6 -translate-y-1 rounded-full bg-slate-900 transition-all duration-700 ease-fluid group-data-[open=true]:translate-y-0 group-data-[open=true]:rotate-45"
+        ></span>
+        <span
+          class="absolute top-1/2 left-0 h-0.5 w-6 translate-y-1 rounded-full bg-slate-900 transition-all duration-700 ease-fluid group-data-[open=true]:translate-y-0 group-data-[open=true]:-rotate-45"
+        ></span>
+      </span>
+    </button>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector('[data-menu-header]');
+  const toggle = document.querySelector('[data-menu-button]');
+  const dismissLinks = document.querySelectorAll('[data-menu-link]');
+
+  if (header && toggle) {
+    const setOpen = (open) => {
+      header.setAttribute('data-open', String(open));
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('overflow-hidden', open);
+    };
+
+    setOpen(false);
+
+    toggle.addEventListener('click', () => setOpen(header.getAttribute('data-open') !== 'true'));
+
+    for (const link of dismissLinks) {
+      link.addEventListener('click', () => setOpen(false));
+    }
+
+    // Close on Escape and whenever the viewport grows past the desktop breakpoint.
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    });
+  }
+</script>

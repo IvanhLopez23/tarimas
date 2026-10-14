@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Every visual value on the site resolves through these,
+ * so nothing gets invented ad hoc inside a component.
+ */
+@theme {
+  /* One typeface for the whole site. Manrope Variable runs from 200 to 800. */
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Hero, subheadings and the tagline cap their line length at 680px. */
+  --container-copy: 680px;
+
+  /* One easing curve for every transition, simulating spring physics. */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Clears the floating navigation pill on every anchor jump. */
+    scroll-padding-top: 7rem;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-slate-700);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings balance, body copy avoids orphaned words. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-orange-500);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  .section {
+    @apply py-16 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold tracking-wide text-orange-600 uppercase;
+  }
+
+  /* Main buttons keep 8px of vertical and 12px of horizontal padding. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-base font-semibold transition-all duration-700 ease-fluid;
+  }
+
+  .btn-primary {
+    @apply bg-orange-600 text-white hover:bg-orange-700 active:scale-[0.98];
+  }
+
+  .btn-outline-dark {
+    @apply border border-slate-700 text-white hover:bg-slate-800 active:scale-[0.98];
+  }
+
+  .btn-outline-light {
+    @apply border border-slate-300 text-slate-900 hover:bg-slate-100 active:scale-[0.98];
+  }
+
+  /* Field styling for the dark quote banner. */
+  .field {
+    @apply w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-base text-white transition-all duration-700 ease-fluid placeholder:text-slate-500;
+  }
+}
+
+/* Horizontal rails hide their scrollbar but stay natively scrollable. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Scroll interpolation: content enters with a heavy fade up, never statically. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(4rem);
+  filter: blur(12px);
+  transition:
+    opacity 800ms var(--ease-fluid),
+    transform 800ms var(--ease-fluid),
+    filter 800ms var(--ease-fluid);
+}
+
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Tagline reveal: each word lights up on its own as it crosses the trigger line. */
+.tagline-word {
+  display: inline-block;
+  margin-right: 0.25em;
+  opacity: 0.28;
+  transition: opacity 700ms var(--ease-fluid);
+  transition-delay: var(--word-delay, 0ms);
+}
+
+.tagline-word.is-lit {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js [data-reveal],
+  .tagline-word {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

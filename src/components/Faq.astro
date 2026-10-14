@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+import { faq, waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.quote);
+---
+
+<section id="preguntas" class="section bg-slate-50">
+  <div class="shell grid gap-12 lg:grid-cols-3">
+    <div class="lg:col-span-1" data-reveal>
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2 class="mt-6 text-3xl font-bold text-slate-900 sm:text-4xl">
+        Lo que nos preguntan antes de comprar
+      </h2>
+      <p class="mt-6 text-base text-slate-700">
+        Si tu duda no aparece aquí, escríbenos por WhatsApp. Contestamos de 8:00 a 18:00 y en
+        menos de 2 horas hábiles.
+      </p>
+      <a href={waHref} target="_blank" rel="noopener" class="btn btn-primary mt-6">
+        <Icon name="whatsapp-logo" class="size-4" />
+        Preguntar por WhatsApp
+      </a>
+    </div>
+
+    <div class="lg:col-span-2" data-reveal style="transition-delay: 100ms">
+      {
+        faq.map((item) => (
+          <details class="group border-b border-slate-200 py-6">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-slate-900 transition-all duration-700 ease-fluid">
+              <span>{item.q}</span>
+              <Icon
+                name="plus"
+                class="size-6 shrink-0 text-orange-600 transition-all duration-700 ease-fluid group-open:rotate-45"
+              />
+            </summary>
+            <p class="mt-4 text-base text-slate-700">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

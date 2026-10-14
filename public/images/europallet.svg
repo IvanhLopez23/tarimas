@@ -1,0 +1,75 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 600"
+  width="800"
+  height="600"
+  role="img"
+  aria-label="Europallet de mil doscientos por ochocientos milímetros con nueve tacos"
+>
+  <rect width="800" height="600" fill="#F8FAFC" />
+
+  <g transform="translate(90 258)">
+    <rect x="0" y="0" width="152" height="20" rx="4" fill="#94A3B8" />
+    <rect x="172" y="0" width="152" height="20" rx="4" fill="#94A3B8" />
+    <rect x="344" y="0" width="152" height="20" rx="4" fill="#94A3B8" />
+    <rect x="516" y="0" width="152" height="20" rx="4" fill="#94A3B8" />
+
+    <rect x="0" y="20" width="46" height="40" rx="3" fill="#64748B" />
+    <rect x="146" y="20" width="46" height="40" rx="3" fill="#64748B" />
+    <rect x="292" y="20" width="46" height="40" rx="3" fill="#64748B" />
+    <rect x="438" y="20" width="46" height="40" rx="3" fill="#64748B" />
+    <rect x="584" y="20" width="46" height="40" rx="3" fill="#64748B" />
+
+    <rect x="0" y="60" width="152" height="20" rx="4" fill="#94A3B8" />
+    <rect x="172" y="60" width="152" height="20" rx="4" fill="#94A3B8" />
+    <rect x="344" y="60" width="152" height="20" rx="4" fill="#94A3B8" />
+    <rect x="516" y="60" width="152" height="20" rx="4" fill="#94A3B8" />
+  </g>
+
+  <g stroke="#EA580C" stroke-width="3" stroke-linecap="round">
+    <path d="M90 440h588" />
+    <path d="M90 430v20" />
+    <path d="M678 430v20" />
+    <path d="M106 440l24-10v20z" fill="#EA580C" stroke="none" />
+    <path d="M662 440l-24-10v20z" fill="#EA580C" stroke="none" />
+  </g>
+  <text
+    x="384"
+    y="486"
+    text-anchor="middle"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="30"
+    font-weight="700"
+    fill="#0F172A"
+  >1200 mm</text>
+
+  <text
+    x="90"
+    y="184"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="26"
+    font-weight="700"
+    fill="#0F172A"
+  >1200 x 800 mm</text>
+  <text
+    x="90"
+    y="216"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#64748B"
+  >9 tacos, 3 entradas, marca EPAL</text>
+
+  <g transform="translate(600 88)">
+    <rect width="112" height="40" rx="10" fill="#EA580C" />
+    <text
+      x="56"
+      y="27"
+      text-anchor="middle"
+      font-family="Manrope, Segoe UI, sans-serif"
+      font-size="19"
+      font-weight="700"
+      fill="#FFFFFF"
+    >EPAL</text>
+  </g>
+</svg>

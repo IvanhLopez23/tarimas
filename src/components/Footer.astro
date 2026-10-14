@@ -1,0 +1,99 @@
+---
+import Icon from './Icon.astro';
+import { navigation, site, waMessages, whatsappLink } from '../data/site';
+
+const waHref = whatsappLink(waMessages.fab);
+const year = new Date().getFullYear();
+
+const sitemap = [
+  ...navigation,
+  { label: 'Preguntas frecuentes', href: '/#preguntas' },
+  { label: 'Aviso de privacidad', href: '/privacidad' },
+  { label: 'Términos de servicio', href: '/terminos' },
+];
+---
+
+<footer class="bg-slate-900 pt-16 pb-8">
+  <div class="shell">
+    <div class="grid gap-12 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <a href="/#inicio" class="flex items-center gap-2">
+          <span class="grid size-8 place-items-center rounded-full bg-orange-600 text-white">
+            <Icon name="stack" class="size-4" />
+          </span>
+          <span class="text-base font-bold text-white">{site.name}</span>
+        </a>
+        <p class="mt-6 max-w-copy text-base text-slate-400">
+          {site.tagline}. Fabricamos, tratamos y despachamos tarimas de madera y plástico desde
+          Apodaca, Nuevo León, para plantas de todo el país y clientes en 26 países.
+        </p>
+        <a href={waHref} target="_blank" rel="noopener" class="btn btn-outline-dark mt-6">
+          <Icon name="whatsapp-logo" class="size-4" />
+          {site.whatsapp.display}
+        </a>
+      </div>
+
+      <nav aria-label="Mapa del sitio">
+        <h2 class="text-sm font-semibold tracking-wide text-slate-500 uppercase">Mapa del sitio</h2>
+        <ul class="mt-6 flex flex-col gap-2">
+          {
+            sitemap.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-base text-slate-300 transition-all duration-700 ease-fluid hover:text-orange-500"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="text-sm font-semibold tracking-wide text-slate-500 uppercase">Contacto</h2>
+        <ul class="mt-6 flex flex-col gap-2 text-base text-slate-300">
+          <li><a href={site.phone.href} class="transition-all duration-700 ease-fluid hover:text-orange-500">{site.phone.display}</a></li>
+          <li>
+            <a href={`mailto:${site.email}`} class="transition-all duration-700 ease-fluid hover:text-orange-500">
+              {site.email}
+            </a>
+          </li>
+          <li>{site.address.street}</li>
+          <li>{site.address.district}</li>
+          <li>{site.address.city}, {site.address.state} {site.address.zip}</li>
+        </ul>
+
+        <ul class="mt-6 flex gap-2">
+          {
+            site.social.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${site.name} en ${item.name}`}
+                  class="grid size-10 place-items-center rounded-full border border-slate-700 text-slate-300 transition-all duration-700 ease-fluid hover:border-orange-600 hover:bg-orange-600 hover:text-white active:scale-[0.98]"
+                >
+                  <Icon name={item.icon} class="size-6" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-4 border-t border-slate-700 pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm text-slate-400">
+        © {year} {site.legalName}. Todos los derechos reservados.
+      </p>
+      <ul class="flex flex-wrap gap-6 text-sm text-slate-400">
+        <li><a href="/privacidad" class="transition-all duration-700 ease-fluid hover:text-orange-500">Aviso de privacidad</a></li>
+        <li><a href="/terminos" class="transition-all duration-700 ease-fluid hover:text-orange-500">Términos de servicio</a></li>
+        <li><a href="/#contacto" class="transition-all duration-700 ease-fluid hover:text-orange-500">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

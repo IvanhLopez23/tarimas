@@ -1,0 +1,72 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 600"
+  width="800"
+  height="600"
+  role="img"
+  aria-label="Tarima americana de 48 por 40 pulgadas vista de frente con medidas"
+>
+  <rect width="800" height="600" fill="#F8FAFC" />
+
+  <g transform="translate(120 250)">
+    <rect x="0" y="0" width="150" height="22" rx="4" fill="#94A3B8" />
+    <rect x="170" y="0" width="150" height="22" rx="4" fill="#94A3B8" />
+    <rect x="340" y="0" width="150" height="22" rx="4" fill="#94A3B8" />
+    <rect x="0" y="22" width="52" height="44" rx="3" fill="#64748B" />
+    <rect x="214" y="22" width="52" height="44" rx="3" fill="#64748B" />
+    <rect x="438" y="22" width="52" height="44" rx="3" fill="#64748B" />
+    <rect x="0" y="66" width="150" height="22" rx="4" fill="#94A3B8" />
+    <rect x="170" y="66" width="150" height="22" rx="4" fill="#94A3B8" />
+    <rect x="340" y="66" width="150" height="22" rx="4" fill="#94A3B8" />
+  </g>
+
+  <!-- Ancho -->
+  <g stroke="#EA580C" stroke-width="3" stroke-linecap="round">
+    <path d="M120 440h560" />
+    <path d="M120 430v20" />
+    <path d="M680 430v20" />
+    <path d="M136 440l24-10v20z" fill="#EA580C" stroke="none" />
+    <path d="M664 440l-24-10v20z" fill="#EA580C" stroke="none" />
+  </g>
+  <text
+    x="400"
+    y="486"
+    text-anchor="middle"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="30"
+    font-weight="700"
+    fill="#0F172A"
+  >1219 mm</text>
+
+  <!-- Alto -->
+  <g stroke="#EA580C" stroke-width="3" stroke-linecap="round">
+    <path d="M744 250v88" />
+    <path d="M734 250h20" />
+    <path d="M734 338h20" />
+  </g>
+  <text
+    x="756"
+    y="308"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="24"
+    font-weight="700"
+    fill="#475569"
+  >144 mm</text>
+
+  <text
+    x="120"
+    y="176"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="26"
+    font-weight="700"
+    fill="#0F172A"
+  >48 x 40 in</text>
+  <text
+    x="120"
+    y="208"
+    font-family="Manrope, Segoe UI, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#64748B"
+  >4 entradas para montacargas</text>
+</svg>
